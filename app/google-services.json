@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "18913264981",
+    "project_id": "kamel-5ee2b",
+    "storage_bucket": "kamel-5ee2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18913264981:android:46af4b9da5ef6d4bc2dbdc",
+        "android_client_info": {
+          "package_name": "com.example.trabalhonarak"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDizC84NnFTawUJFowjGPRCnvlttmhAPOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
