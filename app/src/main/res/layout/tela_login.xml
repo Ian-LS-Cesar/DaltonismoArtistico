@@ -5,35 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/botaoLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginBottom="279dp"
+        android:fontFamily="@font/lexend_medium"
+        android:text="Entrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoSenha" />
+
     <EditText
         android:id="@+id/textoLogin"
-        android:layout_width="500dp"
+        android:layout_width="350dp"
         android:layout_height="70dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="121dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="35dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/textoSenha"
+        app:layout_constraintBottom_toTopOf="@+id/editTextText4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
 
     <EditText
         android:id="@+id/textoSenha"
-        android:layout_width="500dp"
+        android:layout_width="350dp"
         android:layout_height="70dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="844dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
 
     <EditText
         android:id="@+id/editTextText3"
@@ -43,27 +55,18 @@
         android:fontFamily="@font/lexend_medium"
         android:inputType="text"
         android:text="Usuário"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="130dp" />
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="71dp" />
 
     <EditText
         android:id="@+id/editTextText4"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/lexend_medium"
         android:inputType="text"
         android:text="Senha"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="321dp" />
-
-    <Button
-        android:id="@+id/botaoLogin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lexend_medium"
-        android:text="Entrar"
-        tools:layout_editor_absoluteX="351dp"
-        tools:layout_editor_absoluteY="472dp" />
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="221dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

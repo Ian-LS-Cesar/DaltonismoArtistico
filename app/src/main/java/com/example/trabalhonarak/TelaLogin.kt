@@ -9,16 +9,19 @@ import androidx.appcompat.app.AppCompatActivity
 class TelaLogin : AppCompatActivity() {
 
     // Credenciais de admin hardcoded para fins de demonstração
-    private val adminUsername = "admin"
-    private val adminPassword = "admin123"
+    private val adminUsername = "adminEspacoCultural"
+    private val adminPassword = "unifor51Anos"
     private lateinit var botaoLogin: Button
     private lateinit var textoLogin: EditText
     private lateinit var textoSenha: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tela_login)
 
         botaoLogin = findViewById(R.id.botaoLogin)
+        textoLogin = findViewById(R.id.textoLogin)
+        textoSenha = findViewById(R.id.textoSenha)
 
         botaoLogin.setOnClickListener {
             val username = textoLogin.text.toString()
