@@ -1,9 +1,15 @@
 package com.example.trabalhonarak
 
 import android.Manifest
+import android.app.Activity
+import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
@@ -16,8 +22,15 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import android.util.Base64
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.InputStream
+
 
 private val Any.surfaceProvider: Preview.SurfaceProvider?
     get() {
@@ -70,6 +83,46 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, TelaLogin::class.java)
         startActivity(intent)
     }
+
+    fun imageToBase64(context: Context, imageUri: Uri): String {
+        val inputStream: InputStream? = context.contentResolver.openInputStream(imageUri)
+        val buffer = ByteArray(8192)
+        var bytesRead: Int
+        val output = ByteArrayOutputStream()
+        try {
+            while (inputStream?.read(buffer).also { bytesRead = it ?: 0 } != -1) {
+                output.write(buffer, 0, bytesRead)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        val imageBytes: ByteArray = output.toByteArray()
+        return Base64.encodeToString(imageBytes, Base64.DEFAULT)
+    }
+
+    // Função para abrir a galeria e selecionar uma imagem
+
+    fun openGalleryForImage(activity: Activity, requestCode: Int) {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        activity.startActivityForResult(intent, requestCode)
+    }
+
+    private fun addObraComImagem(nome: String, imagemBase64: String) {
+        val obraData = hashMapOf(
+            "nome" to nome,
+            "imagem" to imagemBase64
+        )
+
+        Firebase.firestore.collection("obras")
+            .add(obraData)
+            .addOnSuccessListener { documentReference ->
+                println("Obra adicionada com ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                println("Erro ao adicionar a obra: $e")
+            }
+    }
+
 
     private fun startCamera(viewFinder: Any) {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
