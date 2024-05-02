@@ -1,6 +1,7 @@
 package com.example.trabalhonarak
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var spinner: Spinner
     private lateinit var openCameraButton: Button
+    private lateinit var btnTelaLogin: Button
     private var selectedFilter: String? = null
 
     private var cameraExecutor: ExecutorService? = null
@@ -38,9 +40,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         spinner = findViewById(R.id.spinner)
         openCameraButton = findViewById(R.id.startCameraButton) // Renomeado para openCameraButton
-
+        btnTelaLogin = findViewById(R.id.telaLogin)
         // Configurando o Spinner com as opções de filtro
         val filters = arrayOf("Filtro 1", "Filtro 2", "Filtro 3")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, filters)
@@ -57,6 +60,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
+
+        btnTelaLogin.setOnClickListener{
+            goToTelaLogin()
+        }
+    }
+
+    private fun goToTelaLogin(){
+        val intent = Intent(this, TelaLogin::class.java)
+        startActivity(intent)
     }
 
     private fun startCamera(viewFinder: Any) {
