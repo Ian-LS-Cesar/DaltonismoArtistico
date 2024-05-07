@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TrabalhoNarak</string>
+    <string name="retornar_para_tela_de_login">Retornar para tela de Login</string>
+    <string name="retornar_para_tela_home">Retornar para tela home</string>
 </resources>
