@@ -50,7 +50,7 @@ class TelaInserirObra : AppCompatActivity() {
 
         btnSelecionarImagem.setOnClickListener {
             abrirGaleria()
-            val message = "Imagem selecionada!"
+            val message = "Selecionando imagem...!"
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
         btnAdicionarObra.setOnClickListener {
@@ -97,7 +97,7 @@ class TelaInserirObra : AppCompatActivity() {
         return Base64.encodeToString(imageBytes, Base64.DEFAULT)
     }
 
-    private fun adicionarObraComImagem(imageToBase64: String, ano: String, autor: String, nome: String) {
+    private fun adicionarObraComImagem(nome: String, autor: String, ano: String, imageToBase64: String) {
         val obraData = hashMapOf(
             "imagem" to imageToBase64,
             "ano" to ano,

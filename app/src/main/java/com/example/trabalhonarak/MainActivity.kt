@@ -84,44 +84,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun imageToBase64(context: Context, imageUri: Uri): String {
-        val inputStream: InputStream? = context.contentResolver.openInputStream(imageUri)
-        val buffer = ByteArray(8192)
-        var bytesRead: Int
-        val output = ByteArrayOutputStream()
-        try {
-            while (inputStream?.read(buffer).also { bytesRead = it ?: 0 } != -1) {
-                output.write(buffer, 0, bytesRead)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        val imageBytes: ByteArray = output.toByteArray()
-        return Base64.encodeToString(imageBytes, Base64.DEFAULT)
-    }
 
-    // Função para abrir a galeria e selecionar uma imagem
-
-    fun openGalleryForImage(activity: Activity, requestCode: Int) {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        activity.startActivityForResult(intent, requestCode)
-    }
-
-    private fun addObraComImagem(nome: String, imagemBase64: String) {
-        val obraData = hashMapOf(
-            "nome" to nome,
-            "imagem" to imagemBase64
-        )
-
-        Firebase.firestore.collection("obras")
-            .add(obraData)
-            .addOnSuccessListener { documentReference ->
-                println("Obra adicionada com ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                println("Erro ao adicionar a obra: $e")
-            }
-    }
 
 
     private fun startCamera(viewFinder: Any) {
