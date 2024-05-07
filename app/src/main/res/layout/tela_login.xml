@@ -17,66 +17,46 @@
         android:text="Entrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoSenha" />
+        app:layout_constraintTop_toBottomOf="@+id/textoSenha"
+        app:layout_constraintVertical_bias="0.959" />
 
     <EditText
         android:id="@+id/textoLogin"
-        android:layout_width="350dp"
-        android:layout_height="70dp"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="182dp"
         android:layout_marginEnd="30dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloLogin" />
-
-    <TextView
-        android:id="@+id/tituloLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginBottom="59dp"
         android:ems="10"
         android:fontFamily="@font/lexend_medium"
-        android:text="Usuário"
-        android:textColor="#000000"
+        android:hint="Usuário"
+        android:inputType="text"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/textoSenha"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tituloSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:fontFamily="@font/lexend_medium"
-        android:text="Senha"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoLogin" />
-
     <EditText
         android:id="@+id/textoSenha"
-        android:layout_width="350dp"
-        android:layout_height="70dp"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="59dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
+        android:fontFamily="@font/lexend_medium"
+        android:hint="Senha"
         android:inputType="textPassword"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloSenha" />
+        app:layout_constraintTop_toBottomOf="@+id/textoLogin" />
 
     <ImageButton
         android:id="@+id/botaoVoltarHome"
@@ -85,14 +65,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="325dp"
-        android:layout_marginBottom="26dp"
         android:contentDescription="@string/retornar_para_tela_home"
-        app:layout_constraintBottom_toTopOf="@+id/tituloLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="?attr/homeAsUpIndicator" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
