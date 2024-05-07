@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 class TelaLogin : AppCompatActivity() {
 
     // Credenciais de admin hardcoded para fins de demonstração
-    private val adminUsername = "adminEspacoCultural"
-    private val adminPassword = "unifor51Anos"
+    private val adminUsername = "admin"
+    private val adminPassword = "123"
     private lateinit var btnVoltarHome: ImageButton
     private lateinit var botaoLogin: Button
     private lateinit var textoLogin: EditText

@@ -34,7 +34,7 @@ class TelaInserirObra : AppCompatActivity() {
     private val startForResult: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             selecionarImagemUri = result.data?.data
-            nomeObra.text = selecionarImagemUri?.lastPathSegment
+            var imageBase64 = imageToBase64(this, selecionarImagemUri!!)
         }
     }
 
