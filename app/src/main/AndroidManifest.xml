@@ -12,8 +12,8 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="Daltonismo Artístico"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="Daltonismo Artístico"
         android:supportsRtl="true"
         android:theme="@style/Theme.TrabalhoNarak"
         tools:targetApi="32">
@@ -33,6 +33,15 @@
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TelaAdmin"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <meta-data
