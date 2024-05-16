@@ -20,21 +20,22 @@ import java.io.InputStream
 
 class TelaInserirObra : AppCompatActivity() {
 
-    private lateinit var btnVoltarAdmin: ImageButton
-    private val btnSelecionarImagem: Button by lazy { findViewById(R.id.botaoEscolherImagem) }
-    private val nomeObra: TextView by lazy { findViewById(R.id.caixaNomeObra) }
-    private val nomeAutor: TextView by lazy { findViewById(R.id.caixaAutor)}
-    private val anoObra: TextView by lazy { findViewById(R.id.caixaAno) }
-    private val btnAdicionarObra: Button by lazy { findViewById(R.id.botaoAdicionarObra) }
+    private lateinit var voltarAdminBtn: ImageButton
+    private lateinit var selectImageBtn: Button
+    private lateinit var obraNameTextView: TextView
+    private lateinit var autorNameTextView: TextView
+    private lateinit var anoObraTextView: TextView
+    private lateinit var addObraBtn: Button
 
-    private var selecionarImagemUri: Uri? = null
+    private var selectedImageUri: Uri? = null
 
     private val REQUEST_CODE_IMAGE_PICK = 1
+    private val BUFFER_SIZE = 8192
 
     private val startForResult: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
-            selecionarImagemUri = result.data?.data
-            var imageBase64 = imageToBase64(this, selecionarImagemUri!!)
+            selectedImageUri = result.data?.data
+            convertImageToBase64(this, selectedImageUri!!)
         }
     }
 
@@ -42,28 +43,30 @@ class TelaInserirObra : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tela_inserir_obra)
 
-        btnVoltarAdmin = findViewById(R.id.botaoVoltarTelaAdmin)
+        initViews()
+        setListeners()
+    }
 
-        btnVoltarAdmin.setOnClickListener {
-            voltarAdmin()
-        }
+    private fun initViews() {
+        voltarAdminBtn = findViewById(R.id.botaoVoltarTelaAdmin)
+        selectImageBtn = findViewById(R.id.botaoEscolherImagem)
+        obraNameTextView = findViewById(R.id.caixaNomeObra)
+        autorNameTextView = findViewById(R.id.caixaAutor)
+        anoObraTextView = findViewById(R.id.caixaAno)
+        addObraBtn = findViewById(R.id.botaoAdicionarObra)
+    }
 
-        btnSelecionarImagem.setOnClickListener {
-            abrirGaleria()
-            val message = "Selecionando imagem...!"
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        }
-        btnAdicionarObra.setOnClickListener {
+    private fun setListeners() {
+        voltarAdminBtn.setOnClickListener { voltarAdmin() }
+        selectImageBtn.setOnClickListener { abrirGaleria() }
+        addObraBtn.setOnClickListener {
             adicionarObraFirestore()
-            val message = "Obra adicionada!"
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             voltarAdmin()
         }
-
 
     }
 
-    private fun voltarAdmin(){
+    private fun voltarAdmin() {
         val intent = Intent(this, TelaAdmin::class.java)
         startActivity(intent)
     }
@@ -74,32 +77,34 @@ class TelaInserirObra : AppCompatActivity() {
     }
 
     private fun adicionarObraFirestore() {
-        val nome = nomeObra.text.toString()
-        val autor = nomeAutor.text.toString()
-        val ano = anoObra.text.toString()
-        val imageBase64 = imageToBase64(this, selecionarImagemUri!!)
-        adicionarObraComImagem(nome, autor, ano, imageBase64)
+        val obraName = obraNameTextView.text.toString()
+        val autorName = autorNameTextView.text.toString()
+        val ano = anoObraTextView.text.toString()
+        val imageBase64 = convertImageToBase64(this, selectedImageUri!!)
+        addObraToFirestore(obraName, autorName, ano, imageBase64)
     }
 
-    fun imageToBase64(context: Context, imageUri: Uri): String {
+    private fun convertImageToBase64(context: Context, imageUri: Uri): String {
         val inputStream: InputStream? = context.contentResolver.openInputStream(imageUri)
-        val buffer = ByteArray(8192)
+        val buffer = ByteArray(BUFFER_SIZE)
         var bytesRead: Int
         val output = ByteArrayOutputStream()
+
         try {
-            while (inputStream?.read(buffer).also { bytesRead = it ?: 0 } != -1) {
+            while (inputStream?.read(buffer).also { bytesRead = it?: 0 }!= -1) {
                 output.write(buffer, 0, bytesRead)
             }
         } catch (e: Exception) {
             Log.e("Tela Inserir Obra", "Erro convertendo imagem para Base64", e)
         }
+
         val imageBytes: ByteArray = output.toByteArray()
         return Base64.encodeToString(imageBytes, Base64.DEFAULT)
     }
 
-    private fun adicionarObraComImagem(nome: String, autor: String, ano: String, imageToBase64: String) {
+    private fun addObraToFirestore(nome: String, autor: String, ano: String, imageBase64: String) {
         val obraData = hashMapOf(
-            "imagem" to imageToBase64,
+            "imagem" to imageBase64,
             "ano" to ano,
             "autor" to autor,
             "nome" to nome
@@ -113,14 +118,5 @@ class TelaInserirObra : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.e("Tela Inserir Obra", "Erro Adicionando Obra", e)
             }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE_IMAGE_PICK && resultCode == RESULT_OK) {
-            selecionarImagemUri = data?.data
-            nomeObra.text = selecionarImagemUri?.lastPathSegment
-        }
     }
 }
