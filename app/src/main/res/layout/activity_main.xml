@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,9 +19,12 @@
             android:layout_marginEnd="116dp"
             android:layout_marginBottom="208dp"
             android:text="Administração"
+            android:fontFamily="@font/lexend_medium"
+            android:background="@drawable/button_background"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
@@ -45,6 +46,7 @@
             android:layout_marginEnd="183dp"
             android:layout_marginBottom="4dp"
             android:text="Selecione o tipo de daltonismo:"
+            android:fontFamily="@font/lexend_medium"
             app:layout_constraintBottom_toTopOf="@+id/spinner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -54,10 +56,13 @@
             android:id="@+id/viewFinder"
             android:layout_width="wrap_content"
             android:layout_height="417dp"
+            android:layout_marginTop="128dp"
             android:layout_marginEnd="1dp"
+            android:layout_marginBottom="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="264dp" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -66,6 +71,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Iniciar Câmera"
+        android:fontFamily="@font/lexend_medium"
+        android:background="@drawable/button_background"
+        android:textColor="@color/white"
         android:layout_centerInParent="true"
         android:layout_marginTop="32dp"/>
 

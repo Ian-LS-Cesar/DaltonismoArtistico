@@ -6,100 +6,96 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/botaoEscolherImagem"
+    <ImageButton
+        android:id="@+id/botaoVoltarTelaAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="90dp"
-        android:layout_marginBottom="44dp"
-        android:fontFamily="@font/lexend_medium"
-        android:text="Selecionar Imagem"
-        app:layout_constraintBottom_toTopOf="@+id/botaoAdicionarObra"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caixaAno"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/botaoAdicionarObra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="106dp"
-        android:layout_marginEnd="106dp"
-        android:layout_marginBottom="188dp"
-        android:fontFamily="@font/lexend_medium"
-        android:text="Adicionar Obra"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/homeAsUpIndicator" />
 
     <EditText
         android:id="@+id/caixaNomeObra"
         android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:fontFamily="@font/lexend_medium"
         android:hint="Obra"
         android:inputType="text"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/botaoVoltarTelaAdmin" />
 
     <EditText
         android:id="@+id/caixaAutor"
         android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:fontFamily="@font/lexend_medium"
         android:hint="Autor"
         android:inputType="text"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/caixaNomeObra" />
 
-    <EditText
-        android:id="@+id/caixaAno"
-        android:layout_width="155dp"
-        android:layout_height="45dp"
+    <EditText android:id="@+id/caixaAno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="122dp"
         android:layout_marginTop="41dp"
         android:layout_marginEnd="122dp"
-        android:ems="10"
-        android:fontFamily="@font/lexend_medium"
+        android:ems="10" android:fontFamily="@font/lexend_medium"
         android:hint="Ano"
         android:inputType="number"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caixaAutor" />
+        app:layout_constraintTop_toBottomOf="@+id/caixaAutor"
+        app:layout_constraintVertical_bias="0.5" />
 
-    <ImageButton
-        android:id="@+id/botaoVoltarTelaAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="332dp"
-        android:layout_marginBottom="728dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+
+        android:id="@+id/botaoEscolherImagem"
+        android:layout_width="227dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/lexend_medium"
+        android:text="Selecionar Imagem"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/botaoAdicionarObra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/homeAsUpIndicator" />
+        app:layout_constraintTop_toBottomOf="@+id/caixaAno"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/botaoAdicionarObra"
+        android:layout_width="197dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginBottom="196dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/lexend_medium"
+        android:text="Adicionar Obra"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
