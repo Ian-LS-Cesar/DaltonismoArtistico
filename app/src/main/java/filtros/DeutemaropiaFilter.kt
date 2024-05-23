@@ -1,4 +1,4 @@
-package com.example.trabalhonarak
+package filtros
 
 import android.graphics.Bitmap
 class DeutemaropiaFilter {

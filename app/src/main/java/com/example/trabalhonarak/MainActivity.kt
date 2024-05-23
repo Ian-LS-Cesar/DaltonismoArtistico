@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         openCameraButton = findViewById(R.id.startCameraButton) // Renomeado para openCameraButton
         btnTelaLogin = findViewById(R.id.telaLogin)
         // Configurando o Spinner com as opções de filtro
-        val filters = arrayOf("Selecione o seu filtro:", "Filtro 1", "Filtro 2", "Filtro 3")
+        val filters = arrayOf("Selecione o seu filtro:", "Protanopia", "Deutemaropia", "Tritanopia")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, filters)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
