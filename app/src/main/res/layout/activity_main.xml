@@ -71,7 +71,7 @@
         android:id="@+id/startCameraButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar Câmera"
+        android:text="Iniciar Filtro"
         android:fontFamily="@font/lexend_medium"
         android:background="@drawable/button_background"
         android:textColor="@color/white"

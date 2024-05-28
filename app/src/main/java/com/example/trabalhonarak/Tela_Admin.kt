@@ -1,5 +1,6 @@
 package com.example.trabalhonarak
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -13,6 +14,8 @@ class TelaAdmin : AppCompatActivity() {
     private lateinit var btnVoltarLogin: ImageButton
     private lateinit var btnInserirObraTela: Button
     private lateinit var btnGaleria: Button
+    private lateinit var btnRemoverObras: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +24,11 @@ class TelaAdmin : AppCompatActivity() {
         btnInserirObraTela = findViewById(R.id.botaoInserirObraTela)
         btnVoltarLogin = findViewById(R.id.botaoVoltarLogin)
         btnGaleria = findViewById(R.id.botaoGaleria)
+        btnRemoverObras = findViewById(R.id.botaoRemoverObras)
+
+        btnRemoverObras.setOnClickListener{
+            irParaRemocao()
+        }
 
         btnVoltarLogin.setOnClickListener{
             voltarHome()
@@ -47,6 +55,11 @@ class TelaAdmin : AppCompatActivity() {
 
     private fun irParaGaleria(){
         val intent = Intent(this, TelaListarObras::class.java)
+        startActivity(intent)
+    }
+
+    private fun irParaRemocao(){
+        val intent = Intent(this, TelaRemoverObras::class.java)
         startActivity(intent)
     }
 }

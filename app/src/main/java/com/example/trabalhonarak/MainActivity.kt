@@ -1,15 +1,9 @@
 package com.example.trabalhonarak
 
 import android.Manifest
-import android.app.Activity
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
@@ -22,14 +16,10 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import filtros.FilterSelector
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import android.util.Base64
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.InputStream
+
 
 
 private val Any.surfaceProvider: Preview.SurfaceProvider?
@@ -104,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             val imageAnalysis = ImageAnalysis.Builder()
                 .build()
                 .also {
-                    it.setAnalyzer(cameraExecutor!!, MyImageAnalyzer(selectedFilter))
+                    it.setAnalyzer(cameraExecutor!!, MyImageAnalyzer(selectedFilter, this))
                 }
 
             try {
@@ -120,6 +110,16 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
         }, ContextCompat.getMainExecutor(this))
+
+        val filterSelector = FilterSelector(this)
+        selectedFilter = filterSelector.getSelectedFilter()
+
+        val imageAnalysis = ImageAnalysis.Builder()
+            .build()
+            .also {
+                it.setAnalyzer(cameraExecutor!!, MyImageAnalyzer(selectedFilter, this))
+            }
+
     }
 
     private fun allPermissionsGranted(): Boolean {
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class MyImageAnalyzer(private val selectedFilter: String?) : ImageAnalysis.Analyzer {
+class MyImageAnalyzer(private val selectedFilter: String?, mainActivity: MainActivity) : ImageAnalysis.Analyzer {
     override fun analyze(image: ImageProxy) {
         // Aqui você pode aplicar o filtro selecionado à imagem
         // Exemplo: applyFilter(image, selectedFilter)
