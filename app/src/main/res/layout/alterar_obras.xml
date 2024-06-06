@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/edtNomeObra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome da Obra Atual"/>
+
+    <EditText
+        android:id="@+id/edtNovoNomeObra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Novo Nome da Obra"/>
+
+    <EditText
+        android:id="@+id/edtArtistaObra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Artista da Obra"/>
+
+    <EditText
+        android:id="@+id/edtAnoObra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ano da Obra"/>
+
+    <Button
+        android:id="@+id/btnAlterarObra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alterar Obra"/>
+</LinearLayout>

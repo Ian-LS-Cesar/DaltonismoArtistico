@@ -14,6 +14,7 @@ class TelaAdmin : AppCompatActivity() {
     private lateinit var btnVoltarLogin: ImageButton
     private lateinit var btnInserirObraTela: Button
     private lateinit var btnGaleria: Button
+    private lateinit var btnAlterarObras: Button
     private lateinit var btnRemoverObras: Button
 
 
@@ -24,6 +25,7 @@ class TelaAdmin : AppCompatActivity() {
         btnInserirObraTela = findViewById(R.id.botaoInserirObraTela)
         btnVoltarLogin = findViewById(R.id.botaoVoltarLogin)
         btnGaleria = findViewById(R.id.botaoGaleria)
+        btnAlterarObras = findViewById(R.id.botaoAlterarObras)
         btnRemoverObras = findViewById(R.id.botaoRemoverObras)
 
         btnRemoverObras.setOnClickListener{
@@ -42,6 +44,10 @@ class TelaAdmin : AppCompatActivity() {
             irParaGaleria()
         }
 
+        btnAlterarObras.setOnClickListener{
+            irParaAlterar()
+        }
+
     }
     private fun voltarHome(){
         val intent = Intent(this, TelaLogin::class.java)
@@ -58,6 +64,10 @@ class TelaAdmin : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun irParaAlterar(){
+        val intent = Intent(this, TelaAlterarObras::class.java)
+        startActivity(intent)
+    }
     private fun irParaRemocao(){
         val intent = Intent(this, TelaRemoverObras::class.java)
         startActivity(intent)

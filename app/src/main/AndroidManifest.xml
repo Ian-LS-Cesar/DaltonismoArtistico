@@ -70,6 +70,14 @@
             android:name=".TelaListarObras"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".ObraDetailsActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".TelaAlterarObras"
+            android:exported="true">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
