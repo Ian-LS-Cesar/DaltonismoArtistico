@@ -1,6 +1,7 @@
 package com.example.trabalhonarak
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Parcel
@@ -9,6 +10,7 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -22,11 +24,13 @@ class TelaListarObras : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var obrasAdapter: ObrasAdapter
+    private lateinit var btnVoltarHome: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.tela_listar_obras) // Make sure this is your layout file
+        setContentView(R.layout.tela_listar_obras)
 
+        btnVoltarHome = findViewById(R.id.botaoVoltarHome)
         recyclerView = findViewById(R.id.recyclerViewObras)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -35,6 +39,10 @@ class TelaListarObras : AppCompatActivity() {
 
         // Fetch obras from Firestore
         fetchObrasFromFirestore()
+
+        btnVoltarHome.setOnClickListener{
+            voltarHome()
+        }
     }
 
     private fun fetchObrasFromFirestore() {
@@ -58,6 +66,10 @@ class TelaListarObras : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 println("Error fetching obras: ${exception.message}")
             }
+    }
+    private fun voltarHome(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
 
