@@ -6,9 +6,9 @@ class ProtanopiaFilter {
     fun aplicarFiltroProtanopia(bitmap: Bitmap): Bitmap {
         val width = bitmap.width
         val height = bitmap.height
-        val protanopiaBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val protanopiaBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
         val pixels = IntArray(width * height)
-        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+        protanopiaBitmap.getPixels(pixels, 0, width, 0, 0, width, height)
         for (i in 0 until pixels.size) {
             var vermelho = (pixels[i] shr 16) and 0xFF
             var verde = (pixels[i] shr 8) and 0xFF
@@ -22,8 +22,7 @@ class ProtanopiaFilter {
             //Atualizar pixel
             pixels[i] = (vermelho shl 16) or (verde shl 8 ) or azul
         }
-        protanopiaBitmap.setPixels(pixels, 0 , width , 0, 0, width , height)
+        protanopiaBitmap.setPixels(pixels, 0, width, 0, 0, width, height)
         return protanopiaBitmap
     }
 }
-

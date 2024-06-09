@@ -10,72 +10,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/botaoGaleria"
+            android:layout_width="227dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="325dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginBottom="180dp"
+            android:background="@drawable/button_background"
+            android:elevation="8dp"
+            android:fontFamily="@font/lexend_medium"
+            android:text="Galeria"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/telaLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/telaLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="117dp"
-            android:layout_marginTop="444dp"
-            android:layout_marginEnd="116dp"
-            android:layout_marginBottom="208dp"
-            android:text="Administração"
-            android:fontFamily="@font/lexend_medium"
+            android:layout_marginStart="102dp"
+            android:layout_marginEnd="103dp"
+            android:layout_marginBottom="98dp"
             android:background="@drawable/button_background"
+            android:fontFamily="@font/lexend_medium"
+            android:text="Administração"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="379dp"
-            android:layout_height="62dp"
-            android:layout_marginBottom="308dp"
-            app:layout_constraintBottom_toTopOf="@+id/telaLogin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="183dp"
-            android:layout_marginBottom="4dp"
-            android:text="Selecione o tipo de daltonismo:"
-            android:fontFamily="@font/lexend_medium"
-            app:layout_constraintBottom_toTopOf="@+id/spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextureView
-            android:id="@+id/viewFinder"
-            android:layout_width="wrap_content"
-            android:layout_height="417dp"
-            android:layout_marginTop="128dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/startCameraButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Iniciar Filtro"
-        android:fontFamily="@font/lexend_medium"
-        android:background="@drawable/button_background"
-        android:textColor="@color/white"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="32dp"/>
 
 </RelativeLayout>

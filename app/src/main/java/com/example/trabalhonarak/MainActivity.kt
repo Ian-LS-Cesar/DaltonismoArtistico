@@ -2,24 +2,12 @@ package com.example.trabalhonarak
 
 import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import filtros.FilterSelector
 import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-
 
 
 private val Any.surfaceProvider: Preview.SurfaceProvider?
@@ -35,37 +23,25 @@ class MainActivity : AppCompatActivity() {
     private lateinit var spinner: Spinner
     private lateinit var openCameraButton: Button
     private lateinit var btnTelaLogin: Button
+    private lateinit var btnGaleria: Button
     private var selectedFilter: String? = null
+
 
     private var cameraExecutor: ExecutorService? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-        spinner = findViewById(R.id.spinner)
-        openCameraButton = findViewById(R.id.startCameraButton) // Renomeado para openCameraButton
         btnTelaLogin = findViewById(R.id.telaLogin)
+        btnGaleria = findViewById(R.id.botaoGaleria)
         // Configurando o Spinner com as opções de filtro
-        val filters = arrayOf("Selecione o seu filtro:", "Protanopia", "Deutemaropia", "Tritanopia")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, filters)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
 
-        openCameraButton.setOnClickListener {
-            if (allPermissionsGranted()) {
-                selectedFilter = spinner.selectedItem as? String
-                surfaceProvider?.let { it1 -> startCamera(it1) }
-            } else {
-                requestCameraPermissions()
-            }
-        }
-
-        cameraExecutor = Executors.newSingleThreadExecutor()
 
         btnTelaLogin.setOnClickListener{
             goToTelaLogin()
+        }
+        btnGaleria.setOnClickListener{
+            irParaGaleria()
         }
     }
 
@@ -74,102 +50,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-
-
-
-    private fun startCamera(viewFinder: Any) {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
-        cameraProviderFuture.addListener({
-            val cameraProvider = cameraProviderFuture.get()
-
-            val preview = Preview.Builder()
-                .build()
-                .also {
-                    it.setSurfaceProvider(viewFinder.surfaceProvider)
-                }
-
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
-            val imageAnalysis = ImageAnalysis.Builder()
-                .build()
-                .also {
-                    it.setAnalyzer(cameraExecutor!!, MyImageAnalyzer(selectedFilter, this))
-                }
-
-            try {
-                cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageAnalysis
-                )
-            } catch (exc: Exception) {
-                exc.printStackTrace()
-                Toast.makeText(
-                    this, "Erro ao iniciar a câmera: ${exc.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }, ContextCompat.getMainExecutor(this))
-
-        val filterSelector = FilterSelector(this)
-        selectedFilter = filterSelector.getSelectedFilter()
-
-        val imageAnalysis = ImageAnalysis.Builder()
-            .build()
-            .also {
-                it.setAnalyzer(cameraExecutor!!, MyImageAnalyzer(selectedFilter, this))
-            }
-
-    }
-
-    private fun allPermissionsGranted(): Boolean {
-        for (permission in REQUIRED_PERMISSIONS) {
-            if (ContextCompat.checkSelfPermission(
-                    this, permission
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return false
-            }
-        }
-        return true
-    }
-
-    private fun requestCameraPermissions() {
-        ActivityCompat.requestPermissions(
-            this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
-        )
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (allPermissionsGranted()) {
-                startCamera(viewFinder = Any())
-            } else {
-                Toast.makeText(
-                    this,
-                    "Permissões não concedidas pelo usuário.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                finish()
-            }
-        }
-    }
-
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        cameraExecutor?.shutdown()
+    private fun irParaGaleria(){
+        val intent = Intent(this, TelaListarObras::class.java)
+        startActivity(intent)
     }
 }
 
-class MyImageAnalyzer(private val selectedFilter: String?, mainActivity: MainActivity) : ImageAnalysis.Analyzer {
-    override fun analyze(image: ImageProxy) {
-        // Aqui você pode aplicar o filtro selecionado à imagem
-        // Exemplo: applyFilter(image, selectedFilter)
-        image.close()
-    }
-}

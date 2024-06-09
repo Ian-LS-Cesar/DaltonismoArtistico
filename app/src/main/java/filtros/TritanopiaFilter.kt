@@ -6,9 +6,9 @@ class TritanopiaFilter {
     fun aplicarFiltroTritanopia(bitmap: Bitmap): Bitmap {
         val width = bitmap.width
         val height = bitmap.height
-        val tritanopiaBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val tritanopiaBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
         val pixels = IntArray(width * height)
-        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+        tritanopiaBitmap.getPixels(pixels, 0, width, 0, 0, width, height)
         for (i in 0 until pixels.size) {
             var vermelho = (pixels[i] shr 16) and 0xFF
             val verde = (pixels[i] shr 8) and 0xFF
@@ -25,5 +25,4 @@ class TritanopiaFilter {
         tritanopiaBitmap.setPixels(pixels, 0, width, 0, 0, width, height)
         return tritanopiaBitmap
     }
-
 }

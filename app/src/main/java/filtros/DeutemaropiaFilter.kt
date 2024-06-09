@@ -1,14 +1,16 @@
 package filtros
 
 import android.graphics.Bitmap
+
 class DeutemaropiaFilter {
     fun aplicarFiltroDeutomaropia(bitmap: Bitmap): Bitmap {
         val width = bitmap.width
         val height = bitmap.height
 
-        val deuteranopiaBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        // Create a copy of the original bitmap
+        val deuteranopiaBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
         val pixels = IntArray(width * height)
-        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+        deuteranopiaBitmap.getPixels(pixels, 0, width, 0, 0, width, height)
 
         for (i in 0 until pixels.size) {
             var vermelho = (pixels[i] shr 16) and 0xFF
