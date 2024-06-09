@@ -68,11 +68,13 @@ class ObraDetailsActivity : AppCompatActivity() {
                 override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                     val selectedFilter = parent.getItemAtPosition(position).toString()
                     when (selectedFilter) {
-
+                        "Selecione o Filtro..." -> {
+                            imagemObraDetails.setImageBitmap(originalBitmap)
+                        }
                         "Deutemaropia" -> {
                             val deutemaropiaFilter = DeutemaropiaFilter()
                             val originalBitmapCopy = originalBitmap.copy(originalBitmap.config, true)
-                            val filteredBitmap = deutemaropiaFilter.aplicarFiltroDeutomaropia(originalBitmapCopy)
+                            val filteredBitmap = deutemaropiaFilter.applyFilter(originalBitmapCopy)
                             if (filteredBitmap!= null) {
                                 imagemObraDetails.setImageBitmap(filteredBitmap)
                             } else {
@@ -82,7 +84,7 @@ class ObraDetailsActivity : AppCompatActivity() {
                         "Protanopia" -> {
                             val protanopiaFilter = ProtanopiaFilter()
                             val originalBitmapCopy = originalBitmap.copy(originalBitmap.config, true)
-                            val filteredBitmap = protanopiaFilter.aplicarFiltroProtanopia(originalBitmapCopy)
+                            val filteredBitmap = protanopiaFilter.applyFilter(originalBitmapCopy)
                             if (filteredBitmap!= null) {
                                 imagemObraDetails.setImageBitmap(filteredBitmap)
                             } else {
@@ -92,22 +94,17 @@ class ObraDetailsActivity : AppCompatActivity() {
                         "Tritanopia" -> {
                             val tritanopiaFilter = TritanopiaFilter()
                             val originalBitmapCopy = originalBitmap.copy(originalBitmap.config, true)
-                            val filteredBitmap = tritanopiaFilter.aplicarFiltroTritanopia(originalBitmapCopy)
+                            val filteredBitmap = tritanopiaFilter.applyFilter(originalBitmapCopy)
                             if (filteredBitmap!= null) {
                                 imagemObraDetails.setImageBitmap(filteredBitmap)
                             } else {
                                 Log.e("Filter", "Filtered bitmap is null")
                             }
                         }
-                        else -> {
-                            imagemObraDetails.setImageBitmap(originalBitmap)
-
-                        }
                     }
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {}
-
             }
 
         }?: handleMissingObraData()

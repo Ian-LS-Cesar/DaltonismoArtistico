@@ -1,33 +1,31 @@
 package filtros
 
 import android.graphics.Bitmap
+import android.graphics.Color
 
 class DeutemaropiaFilter {
-    fun aplicarFiltroDeutomaropia(bitmap: Bitmap): Bitmap {
+    fun applyFilter(bitmap: Bitmap): Bitmap? {
         val width = bitmap.width
         val height = bitmap.height
-
-        // Create a copy of the original bitmap
-        val deuteranopiaBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
         val pixels = IntArray(width * height)
-        deuteranopiaBitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
 
-        for (i in 0 until pixels.size) {
-            var vermelho = (pixels[i] shr 16) and 0xFF
-            var verde = (pixels[i] shr 8) and 0xFF
-            val azul = pixels[i] and 0xFF
+        for (i in pixels.indices) {
+            val color = pixels[i]
+            val r = Color.red(color)
+            val g = Color.green(color)
+            val b = Color.blue(color)
 
-            // Diminuir a intensidade do vermelho e verde
-            vermelho = (vermelho * 0.8).toInt()
-            verde = (verde * 0.8).toInt()
+            // Deutemaropia (red-green color blindness) correction
+            val newR = (r * 0.625f + g * 0.375f).toInt()
+            val newG = (r * 0.7f + g * 0.3f).toInt()
+            val newB = b
 
-            // Limitar os valores de cores
-            vermelho = Math.min(255, vermelho)
-            verde = Math.min(255, verde)
-            // Atualizar pixel
-            pixels[i] = (vermelho shl 16) or (verde shl 8) or azul
+            pixels[i] = Color.rgb(newR, newG, newB)
         }
-        deuteranopiaBitmap.setPixels(pixels, 0, width, 0, 0, width, height)
-        return deuteranopiaBitmap
+
+        val filteredBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        filteredBitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+        return filteredBitmap
     }
 }

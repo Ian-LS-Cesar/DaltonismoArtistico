@@ -1,28 +1,31 @@
 package filtros
 
 import android.graphics.Bitmap
+import android.graphics.Color
 
 class TritanopiaFilter {
-    fun aplicarFiltroTritanopia(bitmap: Bitmap): Bitmap {
+    fun applyFilter(bitmap: Bitmap): Bitmap? {
         val width = bitmap.width
         val height = bitmap.height
-        val tritanopiaBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
         val pixels = IntArray(width * height)
-        tritanopiaBitmap.getPixels(pixels, 0, width, 0, 0, width, height)
-        for (i in 0 until pixels.size) {
-            var vermelho = (pixels[i] shr 16) and 0xFF
-            val verde = (pixels[i] shr 8) and 0xFF
-            var azul = pixels[i] and 0xFF
-            // Diminuir a intensidade do azul e amarelo
-            vermelho = (vermelho * 0.9).toInt()
-            azul = (azul * 0.9).toInt()
-            // Limitar os valores de cores
-            vermelho = Math.min(255, vermelho)
-            azul = Math.min(255, azul)
-            // Atualizar pixel
-            pixels[i] = (vermelho shl 16) or (verde shl 8) or azul
+        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+
+        for (i in pixels.indices) {
+            val color = pixels[i]
+            val r = Color.red(color)
+            val g = Color.green(color)
+            val b = Color.blue(color)
+
+            // Tritanopia (blue-blindness) correction
+            val newR = r
+            val newG = (g * 0.7f + b * 0.3f).toInt()
+            val newB = b
+
+            pixels[i] = Color.rgb(newR, newG, newB)
         }
-        tritanopiaBitmap.setPixels(pixels, 0, width, 0, 0, width, height)
-        return tritanopiaBitmap
+
+        val filteredBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        filteredBitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+        return filteredBitmap
     }
 }

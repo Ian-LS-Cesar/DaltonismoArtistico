@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Daltonísmo Artístico</string>
+    <string name="app_name" translatable="false">Daltonísmo Artístico</string>
     <string name="retornar_para_tela_de_login">Retornar para tela de Login</string>
     <string name="retornar_para_tela_home">Retornar para tela home</string>
     <string-array name="filter_options">
-        <item>None</item>
+        <item>Selecione o Filtro...</item>
         <item>Deutemaropia</item>
         <item>Protanopia</item>
         <item>Tritanopia</item>

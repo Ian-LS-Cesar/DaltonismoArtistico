@@ -1,28 +1,31 @@
 package filtros
 
 import android.graphics.Bitmap
+import android.graphics.Color
 
 class ProtanopiaFilter {
-    fun aplicarFiltroProtanopia(bitmap: Bitmap): Bitmap {
+    fun applyFilter(bitmap: Bitmap): Bitmap? {
         val width = bitmap.width
         val height = bitmap.height
-        val protanopiaBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
         val pixels = IntArray(width * height)
-        protanopiaBitmap.getPixels(pixels, 0, width, 0, 0, width, height)
-        for (i in 0 until pixels.size) {
-            var vermelho = (pixels[i] shr 16) and 0xFF
-            var verde = (pixels[i] shr 8) and 0xFF
-            val azul = pixels [i] and 0xFF
-            //Diminuir a intensidade do vermelho e verde
-            vermelho = (vermelho * 0.7).toInt()
-            verde = (verde * 0.7).toInt()
-            //Limitar os valores de cores
-            vermelho = Math.min(255, vermelho)
-            verde = Math.min(255, verde)
-            //Atualizar pixel
-            pixels[i] = (vermelho shl 16) or (verde shl 8 ) or azul
+        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+
+        for (i in pixels.indices) {
+            val color = pixels[i]
+            val r = Color.red(color)
+            val g = Color.green(color)
+            val b = Color.blue(color)
+
+            // Protanopia (red-blindness) correction
+            val newR = (r * 0.567f + g * 0.433f).toInt()
+            val newG = g
+            val newB = b
+
+            pixels[i] = Color.rgb(newR, newG, newB)
         }
-        protanopiaBitmap.setPixels(pixels, 0, width, 0, 0, width, height)
-        return protanopiaBitmap
+
+        val filteredBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        filteredBitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+        return filteredBitmap
     }
 }
