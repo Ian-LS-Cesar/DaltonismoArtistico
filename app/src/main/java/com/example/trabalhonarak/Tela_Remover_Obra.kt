@@ -26,6 +26,7 @@ class TelaRemoverObras : AppCompatActivity() {
             val nomeObra = edtNomeObra.text.toString()
             if (nomeObra.isNotEmpty()) {
                 removerObraFirestore(nomeObra)
+                voltarAdmin()
             } else {
                 Toast.makeText(this, "Por favor, insira o nome da obra.", Toast.LENGTH_SHORT).show()
             }

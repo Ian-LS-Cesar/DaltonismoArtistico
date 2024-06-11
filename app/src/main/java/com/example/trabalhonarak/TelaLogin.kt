@@ -36,8 +36,8 @@ class TelaLogin : AppCompatActivity() {
                 // Se as credenciais coincidirem, exibir mensagem de sucesso
                 val message = "Login bem-sucedido como administrador!"
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-
                 startActivity(intent)
+
             }else if (username == "" || password == ""){
                 val message = "Por favor, preencha os campos!"
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

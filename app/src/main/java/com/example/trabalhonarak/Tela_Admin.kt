@@ -13,7 +13,6 @@ class TelaAdmin : AppCompatActivity() {
 
     private lateinit var btnVoltarLogin: ImageButton
     private lateinit var btnInserirObraTela: Button
-    private lateinit var btnGaleria: Button
     private lateinit var btnAlterarObras: Button
     private lateinit var btnRemoverObras: Button
 
@@ -24,7 +23,6 @@ class TelaAdmin : AppCompatActivity() {
 
         btnInserirObraTela = findViewById(R.id.botaoInserirObraTela)
         btnVoltarLogin = findViewById(R.id.botaoVoltarLogin)
-        btnGaleria = findViewById(R.id.botaoGaleria)
         btnAlterarObras = findViewById(R.id.botaoAlterarObras)
         btnRemoverObras = findViewById(R.id.botaoRemoverObras)
 
@@ -40,9 +38,6 @@ class TelaAdmin : AppCompatActivity() {
             irParaInserirObra()
         }
 
-        btnGaleria.setOnClickListener{
-            irParaGaleria()
-        }
 
         btnAlterarObras.setOnClickListener{
             irParaAlterar()

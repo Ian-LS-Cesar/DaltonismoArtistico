@@ -1,14 +1,17 @@
 package com.example.trabalhonarak
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
 class TelaAlterarObras : AppCompatActivity() {
 
+    private lateinit var voltarAdminBtn: ImageButton
     private lateinit var btnAlterarObra: Button
     private lateinit var edtNomeObra: EditText
     private lateinit var edtNovoNomeObra: EditText
@@ -18,7 +21,7 @@ class TelaAlterarObras : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.alterar_obras)
-
+        voltarAdminBtn = findViewById(R.id.botaoVoltarTelaAdmin)
         btnAlterarObra = findViewById(R.id.btnAlterarObra)
         edtNomeObra = findViewById(R.id.edtNomeObra)
         edtNovoNomeObra = findViewById(R.id.edtNovoNomeObra)
@@ -32,10 +35,18 @@ class TelaAlterarObras : AppCompatActivity() {
             val anoObra = edtAnoObra.text.toString()
             if (nomeObra.isNotEmpty() && novoNomeObra.isNotEmpty()  && artistaObra.isNotEmpty() && anoObra.isNotEmpty()) {
                 alterarObraFirestore(nomeObra, novoNomeObra, artistaObra, anoObra)
+                voltarAdmin()
             } else {
                 Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        voltarAdminBtn.setOnClickListener {voltarAdmin()}
+    }
+
+    private fun voltarAdmin() {
+        val intent = Intent(this, TelaAdmin::class.java)
+        startActivity(intent)
     }
 
     private fun alterarObraFirestore(nomeObra: String, novoNomeObra: String, artistaObra: String, anoObra: String) {

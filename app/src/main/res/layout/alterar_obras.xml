@@ -1,39 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/edtNomeObra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nome da Obra Atual"/>
+    <ImageButton
+        android:id="@+id/botaoVoltarTelaAdmin"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:srcCompat="?attr/homeAsUpIndicator" />
 
-    <EditText
-        android:id="@+id/edtNovoNomeObra"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Novo Nome da Obra"/>
+        android:layout_marginTop="16dp"
+        android:text="Alterar nome da obra"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:id="@+id/edtArtistaObra"
+    <LinearLayout
+        android:id="@+id/center_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Artista da Obra"/>
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:layout_below="@+id/botaoVoltarTelaAdmin">
 
-    <EditText
-        android:id="@+id/edtAnoObra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ano da Obra"/>
+        <EditText
+            android:id="@+id/edtNomeObra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome da Obra Atual"
+            android:padding="16dp"
+            android:textSize="18sp"/>
 
-    <Button
-        android:id="@+id/btnAlterarObra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Alterar Obra"/>
-</LinearLayout>
+        <EditText
+            android:id="@+id/edtNovoNomeObra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Novo Nome da Obra"
+            android:padding="16dp"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/edtArtistaObra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Artista da Obra"
+            android:padding="16dp"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/edtAnoObra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ano da Obra"
+            android:padding="16dp"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btnAlterarObra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/yellow"
+            android:textColor="@color/purple"
+            android:text="Alterar Obra"
+            android:padding="16dp"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+</RelativeLayout>
