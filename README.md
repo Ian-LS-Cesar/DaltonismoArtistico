@@ -1,4 +1,4 @@
-# Desevolvimento de Plataformas Móveis
+# Desenvolvimento de Plataformas Móveis
 ## Profº Thiago Narak
 ## Disciplina: T197-18/19
 
